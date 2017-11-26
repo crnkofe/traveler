@@ -24,7 +24,6 @@ from PIL import Image
 logging.basicConfig(level=logging.DEBUG)
 
 if __name__ != '__main__':
-    print("a")
     sys.exit(1)
 
 arguments = docopt(__doc__)
