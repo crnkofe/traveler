@@ -28,23 +28,21 @@ if __name__ != '__main__':
     sys.exit(1)
 
 arguments = docopt(__doc__)
-print(arguments['--image'], arguments['--color'], arguments['--scale'])
 logging.debug("test")
-print("test")
+# allowed distance from passed in color
+threshold = 255 * 0.1
 
 cr, cg, cb = int("0x" + arguments['--color'][:2], 0),\
     int("0x" + arguments['--color'][2:4], 0),\
     int("0x" + arguments['--color'][4:6], 0)
-print(cr, cg, cb)
 
 try:
     img = Image.open(arguments['--image'])
     count_same = 0
     for pixel in img.getdata():
         r, g, b = pixel[0], pixel[1], pixel[2]
-        if cr == r and cg == g and cb == b:
+        if abs(cr - r) < threshold and abs(cg - g) < threshold and abs(cb - b) < threshold:
             count_same += 1
-    logging.info("Count pixels: {0}".format(count_same))
-    logging.info("You have travelled: %s m", count_same * float(arguments['--scale']))
+    logging.info("You have travelled: %s m", int(count_same * float(arguments['--scale'])))
 except Exception as e:
     logging.error(e)
