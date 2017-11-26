@@ -27,7 +27,6 @@ if __name__ != '__main__':
     sys.exit(1)
 
 arguments = docopt(__doc__)
-logging.debug("test")
 # allowed distance from passed in color
 threshold = 255 * 0.1
 
