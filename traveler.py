@@ -39,8 +39,11 @@ try:
     count_same = 0
     for pixel in img.getdata():
         r, g, b = pixel[0], pixel[1], pixel[2]
-        if abs(cr - r) < threshold and abs(cg - g) < threshold and abs(cb - b) < threshold:
+        if abs(cr - r) < threshold and\
+                abs(cg - g) < threshold and\
+                abs(cb - b) < threshold:
             count_same += 1
-    logging.info("You have travelled: %s m", int(count_same * float(arguments['--scale'])))
+    logging.info("You have travelled: %s m",
+                 int(count_same * float(arguments['--scale'])))
 except Exception as e:
     logging.error(e)
